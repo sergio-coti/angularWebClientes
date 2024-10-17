@@ -1,0 +1,32 @@
+<h3>Edição de clientes</h3>
+<p>Utilize os campos para alterar os dados do cliente.</p>
+
+<div *ngIf="mensagem" class="alert alert-primary">
+    <strong> {{ mensagem }} </strong>
+</div>
+
+<form [formGroup]="formulario" (ngSubmit)="atualizarCliente()">
+
+    <div class="mb-3">
+        <label>Nome do cliente:</label>
+        <input type="text" class="form-control" formControlName="nome"/>
+    </div>
+
+    <div class="mb-3">
+        <label>Email do cliente:</label>
+        <input type="text" class="form-control" formControlName="email"/>
+    </div>
+
+    <div class="mb-3">
+        <label>Telefone do cliente:</label>
+        <input type="text" class="form-control" formControlName="telefone"
+            mask="(00) 00000-0000"/>
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-primary" value="Salvar Alterações" 
+            [disabled]="formulario.invalid"
+        />
+    </div>
+
+</form>

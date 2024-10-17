@@ -1,0 +1,55 @@
+<h3>Consulta de clientes</h3>
+<p>Listagem de clientes cadastrados no sistema.</p>
+
+<div *ngIf="mensagem" class="alert alert-primary">
+    <strong> {{ mensagem }} </strong>
+</div>
+
+<div class="text-center">
+    <pagination-controls
+        previousLabel="Página anterior"
+        nextLabel="Próxima página"
+        (pageChange)="handlePageChange($event)"
+    />
+</div>
+
+<div class="table-responsive">
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Nome do cliente</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Data e hora de cadastro</th>
+                <th>Operações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of clientes | paginate : { itemsPerPage : 5, currentPage : paginador }">
+                <td> {{ c.nome | uppercase }} </td>
+                <td> {{ c.email | lowercase }} </td>
+                <td> {{ c.telefone | mask : '(00) 00000-0000' }} </td>
+                <td> {{ c.dataCadastro | date : 'dd/MM/yyyy HH:mm' }} </td>
+                <td>
+                    <button class="btn btn-sm btn-primary me-1"
+                        [routerLink]="['/app/editar-clientes', c.id]">
+                        Editar
+                    </button>
+                    <button class="btn btn-sm btn-danger me-1"
+                        (click)="excluirCliente(c.id)">
+                        Excluir
+                    </button>
+                </td>                
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    Quantidade de clientes: {{ clientes.length }}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
