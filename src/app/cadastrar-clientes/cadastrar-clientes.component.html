@@ -1,32 +1,41 @@
-<h3>Cadastro de clientes</h3>
-<p>Preencha os campos para incluir um cliente.</p>
+<div class="d-flex justify-content-center">
+  <div class="card p-4 shadow-lg" style="width: 100%; max-width: 2000px">
+    <h3>Cadastro de clientes</h3>
+    <p>Preencha os campos para incluir um cliente.</p>
 
-<div *ngIf="mensagem" class="alert alert-primary">
-    <strong> {{ mensagem }} </strong>
-</div>
+    <div *ngIf="mensagem" class="alert alert-primary">
+      <strong> {{ mensagem }} </strong>
+    </div>
 
-<form [formGroup]="formulario" (ngSubmit)="cadastrarCliente()">
-
-    <div class="mb-3">
+    <form [formGroup]="formulario" (ngSubmit)="cadastrarCliente()">
+      <div class="mb-3">
         <label>Nome do cliente:</label>
-        <input type="text" class="form-control" formControlName="nome"/>
-    </div>
+        <input type="text" class="form-control" formControlName="nome" />
+      </div>
 
-    <div class="mb-3">
+      <div class="mb-3">
         <label>Email do cliente:</label>
-        <input type="text" class="form-control" formControlName="email"/>
-    </div>
+        <input type="text" class="form-control" formControlName="email" />
+      </div>
 
-    <div class="mb-3">
+      <div class="mb-3">
         <label>Telefone do cliente:</label>
-        <input type="text" class="form-control" formControlName="telefone"
-            mask="(00) 00000-0000"/>
-    </div>
-
-    <div class="mb-3">
-        <input type="submit" class="btn btn-success" value="Realizar Cadastro" 
-            [disabled]="formulario.invalid"
+        <input
+          type="text"
+          class="form-control"
+          formControlName="telefone"
+          mask="(00) 00000-0000"
         />
-    </div>
+      </div>
 
-</form>
+      <div class="mb-3">
+        <input
+          type="submit"
+          class="btn btn-success"
+          value="Realizar Cadastro"
+          [disabled]="formulario.invalid"
+        />
+      </div>
+    </form>
+  </div>
+</div>
